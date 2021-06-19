@@ -19,7 +19,7 @@ class listInterview extends Component{
         this.state={
             Interviews: [],
             reSchedule: [],
-            startDateValue: new Date(), endDateValue: new Date(),
+            startDateValue: new Date(), endDateValue: new Date(new Date().getTime() + 100000),
             OpenModal: false
         }
         

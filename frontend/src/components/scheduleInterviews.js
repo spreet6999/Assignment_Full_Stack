@@ -15,7 +15,7 @@ import * as api from '../api/interviewsApi'
 class scheduleInterview extends Component{
     constructor(props){
         super(props);
-        this.state = {users: [], participants: [], startDateValue: new Date(), endDateValue: new Date()};
+        this.state = {users: [], participants: [], startDateValue: new Date(), endDateValue: new Date(new Date().getTime() + 100000)};
 
         this.handleAddParticipants.bind(this);
         this.handleRemoveParticipants.bind(this);

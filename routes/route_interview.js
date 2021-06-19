@@ -42,19 +42,76 @@ router.get("/interviewget/:id", function (req, res) {
 })
 
 router.post("/interviewupdate/:id", function (req, res) {
-  var next;
-  const result=interviewService(req, res, next)
-  if(result instanceof Interview)
-  {
-    Interview.findByIdAndUpdate(req.params.id, req.body, function (err, interview) {
+  var start = req.body.start_time;
+  var end = req.body.end_time;
+  var participants = req.body.participant_names;
+  if (participants.length < 2) {
+    return res.status(400).json({ "error": "Error!! Number of Participants are less than 2" });
+  }
+  else {
+    var query = { name: participants }
+    User.find(query, function (err, user) {
       if (err) {
         console.log(err);
       }
       else {
-        return res.status(202).json({ "text": "Interview updated" })
+        if (user.length !== participants.length) {
+          return res.status(400).json({ "error": "First create a user with the name mentioned in participants" });
+        }
+        else {
+          var query = {
+            participant_names: { $in: participants }
+          };
+          Interview.find(query, function (err, interviews) {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              if (interviews.length === 0) {
+                Interview.findByIdAndUpdate(req.params.id, req.body, function (err, interview) {
+                  if (err) {
+                    console.log(err);
+                  }
+                  else {
+                    return res.status(202).json({ "text": "Interview updated" })
+                  }
+                })
+              }
+              else {
+                var q = {
+                  $or: [
+                    { start_time: { $lte: start }, end_time: { $gte: start } },
+                    { start_time: { $lte: end }, end_time: { $gte: end } }
+                  ]
+                }
+                Interview.find(q, function (err, inter) {
+                  if (err) {
+                    console.log(err);
+                  }
+                  else {
+                    if (inter.length === 0) {
+                      Interview.findByIdAndUpdate(req.params.id, req.body, function (err, interview) {
+                        if (err) {
+                          console.log(err);
+                        }
+                        else {
+                          return res.status(202).json({ "text": "Interview updated" })
+                        }
+                      })
+                    }
+                    else {
+                      return res.status(400).json({ "error": "Interview can't be scheduled" });
+                    }
+                  }
+                })
+              }
+            }
+          })
+        }
       }
     })
   }
+    
 })
 
 router.get("/interviewgetall", function (req, res) {
