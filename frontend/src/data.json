@@ -1,0 +1,49 @@
+[
+    {
+        "roles": [
+            "admin",
+            "participants"
+        ],
+        "_id": "60cb9df69206d8bc2d4cbeee",
+        "name": "Shagun",
+        "mail": "spreet6999@gmail.com",
+        "__v": 0
+    },
+    {
+        "roles": [
+            "admin",
+            "participants"
+        ],
+        "_id": "60cb9e049206d8bc2d4cbef0",
+        "name": "Siddharth",
+        "mail": "sidvaish97@gmail.com",
+        "__v": 0
+    },
+    {
+        "roles": [
+            "participants"
+        ],
+        "_id": "60cb9e139206d8bc2d4cbef2",
+        "name": "Arpit",
+        "mail": "arpit@gmail.com",
+        "__v": 0
+    },
+    {
+        "roles": [
+            "participants"
+        ],
+        "_id": "60cb9e1e9206d8bc2d4cbef4",
+        "name": "Deepak",
+        "mail": "deepak@gmail.com",
+        "__v": 0
+    },
+    {
+        "roles": [
+            "participants"
+        ],
+        "_id": "60cb9e269206d8bc2d4cbef6",
+        "name": "Aditya",
+        "mail": "aditya@gmail.com",
+        "__v": 0
+    }
+]
