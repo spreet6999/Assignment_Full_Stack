@@ -46,7 +46,7 @@ class scheduleInterview extends Component{
     } 
 
     handleRemoveParticipants(e, newUser){
-        let temp = this.state.participants.filter((user)=>newUser.userId!==user.userId)
+        let temp = this.state.participants.filter((user)=>newUser._id!==user._id)
         this.setState({participants: temp})
     }
 

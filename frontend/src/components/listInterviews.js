@@ -103,7 +103,13 @@ class listInterview extends Component{
                 <Grid item xs={12}>
                     List of Upcoming Interviews
                 </Grid>
-                <Grid item xs={12}>
+
+                { this.state.Interviews.length === 0 ? 
+                    <Grid item xs={12}>
+                        <h> There are no Interviews to display, please schedule some.</h>
+                    </Grid>
+                     :
+                    <Grid item xs={12}>
                     <Grid
                         container
                         direction="row"
@@ -120,6 +126,7 @@ class listInterview extends Component{
                         </Grid>
                     </Grid>
                 </Grid>
+                }
 
                 {this.state.Interviews.map( Interview =>
                 <Grid item xs={12} key={Interview._id}>
@@ -151,7 +158,7 @@ class listInterview extends Component{
                                     {this.getStartDateValue(Interview.start_time).getMinutes()}
                                     {" to "}
                                     {this.getStartDateValue(Interview.end_time).getHours()} : 
-                                    {this.getStartDateValue(Interview.start_time).getMinutes()}
+                                    {this.getStartDateValue(Interview.end_time).getMinutes()}
                                 </Grid>
                                 
                                 <Grid item xs={12} sm={4}>
